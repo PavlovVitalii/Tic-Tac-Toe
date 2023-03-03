@@ -1,4 +1,5 @@
 import style from "./StartPage.module.css";
+import GameFiled from "../gameFiled/GameFiled";
 
 const FIRST_PLAYER = "Player 1";
 const SECOND_PLAYER = "Player 2";
@@ -9,7 +10,10 @@ const StartPage = () => {
       <div>
         <h1>Tic Tac Toe</h1>
       </div>
-      <div className={style.field}></div>
+      <div className={style.fieldContainer}>
+        <GameFiled />
+        <button className={style.btn}>Нова гра</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -28,7 +32,6 @@ const StartPage = () => {
           </tr>
         </tbody>
       </table>
-      <button>Нова гра</button>
     </div>
   );
 };

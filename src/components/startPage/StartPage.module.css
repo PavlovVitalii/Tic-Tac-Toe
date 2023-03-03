@@ -1,26 +1,30 @@
-.container{
-    background-color: rgb(111, 87, 12);
-    height: 100vh;
-    color: rgb(39, 126, 136);
+.container {
+  background-color: rgb(111, 87, 12);
+  height: 100vh;
+  color: rgb(35, 191, 191);
+  text-align: center;
 }
-h1{
-    text-align: center;
-    margin: 0 auto;
-    font-size: 80px;
-    color: rgb(0, 255, 17);
-}
-
-th, td{
-    border: 2px solid #000;
+h1 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 80px;
+  color: rgb(35, 191, 191);
 }
 
-table{
-    margin: auto;
+th,
+td {
+  border: 2px solid #000;
 }
 
-.field{
-    width: 400px;
-    height: 400px;
-    background-color: aliceblue;
-    margin: auto;
+table {
+  margin: 5px auto;
+}
+
+.fieldContainer {
+  display: inline-block;
+}
+
+.btn {
+  left: 100px;
+  background-color: rgb(35, 191, 191);
 }
