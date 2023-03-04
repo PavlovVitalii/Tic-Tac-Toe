@@ -1,7 +1,12 @@
-
-.square{
-width: 150px;
-height: 150px;
-background-color: rgb(18, 98, 168);
-float: left;
+.square {
+  width: 150px;
+  height: 150px;
+  background-color: rgb(18, 98, 168);
+  font-size: 80px;
+  float: left;
 }
+
+:hover.square {
+  background-color: rgb(21, 84, 139);
+}
+

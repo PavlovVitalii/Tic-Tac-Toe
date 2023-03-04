@@ -1,17 +1,27 @@
 import style from "./StartPage.module.css";
 import GameFiled from "../gameFiled/GameFiled";
-
-const FIRST_PLAYER = "Player 1";
-const SECOND_PLAYER = "Player 2";
+import { useState } from "react";
 
 const StartPage = () => {
+  const [players, setPlayers] = useState({
+    namePlayerX: "",
+    namePlayerO: "",
+    movesPlayerX: [],
+    movesPlayerO: [],
+    valueSquare: "true",
+  });
+
+  const changeXorO = () => {
+    setPlayers({ ...players, valueSquare: !players.valueSquare });
+  };
+  
   return (
     <div className={style.container}>
       <div>
         <h1>Tic Tac Toe</h1>
       </div>
       <div className={style.fieldContainer}>
-        <GameFiled />
+        <GameFiled valueSquare={players.valueSquare} changeValue={changeXorO} />
         <button className={style.btn}>Нова гра</button>
       </div>
       <table>
@@ -23,11 +33,11 @@ const StartPage = () => {
         </thead>
         <tbody>
           <tr>
-            <th>{FIRST_PLAYER}</th>
+            <th>{}</th>
             <th>0</th>
           </tr>
           <tr>
-            <th>{SECOND_PLAYER}</th>
+            <th>{}</th>
             <th>0</th>
           </tr>
         </tbody>
