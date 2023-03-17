@@ -4,6 +4,7 @@
   background-color: rgb(18, 98, 168);
   font-size: 80px;
   float: left;
+  color: black;
 }
 
 :hover.square {

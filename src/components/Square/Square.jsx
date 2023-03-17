@@ -4,22 +4,29 @@ import style from "./Square.module.css";
 const Square = (props) => {
   const [square, setSquare] = useState({ disable: false, value: "" });
 
-  const handleClick = (event) => {
+  const data = { id: props.id, ...props.data };
+
+  const handleClick = () => {
+    if (data.isNameEmpty()) {
+     data.isShowPopUp();
+      return;
+    }
+
     setSquare({ ...square, disable: true });
 
-    if (props.valueSquare) {
+    if (data.valueSquare) {
       setSquare({ disable: true, value: "X" });
     } else {
       setSquare({ disable: true, value: "O" });
     }
-    props.changeValue();
+    data.changeValue();
   };
 
   return (
     <button
       className={style.square}
       onClick={handleClick}
-      id={props.id}
+      id={data.id}
       disabled={square.disable}
     >
       {square.value}
