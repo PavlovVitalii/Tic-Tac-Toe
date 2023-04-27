@@ -1,41 +1,43 @@
 import style from "./StartPage.module.css";
 import GameFiled from "../gameFiled/GameFiled";
 import { useState } from "react";
-import PopUp from "../popUp/PopUp";
+import PopUp from "../popUps/Info/PopUp";
+import NamesPopUp from "../popUps/playersName/addNames";
 
 const StartPage = () => {
   const [state, setState] = useState({
     playerX: { name: "", moves: [] },
     playerO: { name: "", moves: [] },
     valueSquare: "true",
-    isShowPopUp: false,
+    isShowInfo: false,
+    isShowForm: false,
   });
 
   const changeXorO = () => {
     setState({ ...state, valueSquare: !state.valueSquare });
   };
 
-  const changeStatePopUp = () => {
-    setState({...state, isShowPopUp: !state.isShowPopUp});
-  }
+  const changeVisibilityInfo = () => {
+    setState({ ...state, isShowInfo: !state.isShowInfo });
+  };
+
+  const changeVisibilityForm = () => {
+    setState({ ...state, isShowForm: !state.isShowForm });
+  };
 
 
   const isNameEmpty = () => {
     const namePlayer_1 = state.playerX.name.trim();
     const namePlayer_2 = state.playerO.name.trim();
 
-    if (namePlayer_1 === "" || namePlayer_2 === "") {
-      return true;
-    }
-
-    return false;
+    return namePlayer_1 === "" || namePlayer_2 === "";
   };
- 
+
   const props = {
     valueSquare: state.valueSquare,
     changeValue: changeXorO,
     isNameEmpty: isNameEmpty,
-    isShowPopUp: changeStatePopUp,
+    changeVisibilityInfo: changeVisibilityInfo,
   };
 
   return (
@@ -43,9 +45,9 @@ const StartPage = () => {
       <div>
         <h1>Tic Tac Toe</h1>
       </div>
-      <div className={style.fieldContainer}>
+      <div className={style["field-container"]}>
         <GameFiled data={props} />
-        <button className={style.btn}>Нова гра</button>
+        <button className={style.btn} onClick={changeVisibilityForm}>Нова гра</button>
       </div>
       <table>
         <thead>
@@ -65,7 +67,11 @@ const StartPage = () => {
           </tr>
         </tbody>
       </table>
-      <PopUp isShowPopUp={state.isShowPopUp} changeStatePopUp={changeStatePopUp}/>
+      <PopUp
+        isShowPopUp={state.isShowInfo}
+        changeVisibilityInfo={changeVisibilityInfo}
+      />
+      <NamesPopUp isShowPopUp={state.isShowForm} changeVisibilityForm={changeVisibilityForm}></NamesPopUp>
     </div>
   );
 };

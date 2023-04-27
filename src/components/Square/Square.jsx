@@ -5,10 +5,9 @@ const Square = (props) => {
   const [square, setSquare] = useState({ disable: false, value: "" });
 
   const data = { id: props.id, ...props.data };
-
   const handleClick = () => {
     if (data.isNameEmpty()) {
-     data.isShowPopUp();
+     data.changeVisibilityInfo();
       return;
     }
 

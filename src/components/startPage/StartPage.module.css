@@ -18,11 +18,16 @@ td {
   border: 2px solid #000;
 }
 
-table {
-  margin: 5px auto;
+th{
+  padding: 0 10px;
 }
 
-.fieldContainer {
+table {
+  margin: 5px auto;
+  width: 450px;
+}
+
+.field-container {
   display: inline-block;
 }
 

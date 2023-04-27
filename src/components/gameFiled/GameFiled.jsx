@@ -2,7 +2,6 @@ import Square from "../square/Square";
 import style from "./GameFiled.module.css";
 
 const GameFiled = (props) => {
-
   const data = {...props.data};
   
   return (
