@@ -2,34 +2,46 @@ import { useState } from "react";
 import style from "./names.module.css";
 
 const AddNames = (props) => {
-  const [visibility, setVisibility] = useState(props.isShowPopUp);
-  console.log(visibility);
+  const [state, setState] = useState({
+    visible: false,
+    firsPlayerName: "",
+    secondPlayerName: "",
+  });
 
-  const FIRST_PLAYER_NAME = "Перший гравець";
-  const SECOND_PLAYER_NAME = "Другий гравець";
+  const TITLE_FIRST_PLAYER_NAME = "Перший гравець";
+  const TITLE_SECOND_PLAYER_NAME = "Другий гравець";
   let classNameContainer = `${style["form-container"]}`;
 
-  if (props.isShowPopUp !== visibility) {
-    setVisibility(props.isShowPopUp);
+  if (props.isShowPopUp !== state.visible) {
+    setState({ ...state, visible: props.isShowPopUp });
   }
 
   const handleClick = () => {
-    setVisibility(props.changeVisibilityForm());
+    props.savePlayersNames(state.firsPlayerName, state.secondPlayerName);
+    setState({ ...state, firsPlayerName: "", secondPlayerName: "" });
+  };
+
+  const handleChange = (event) => {
+    if (event.target.id === "firstPlayer") {
+      setState({ ...state, firsPlayerName: event.target.value });
+    } else {
+      setState({ ...state, secondPlayerName: event.target.value });
+    }
   };
 
   return (
     <div
       className={
-        visibility
+        state.visible
           ? classNameContainer
           : (classNameContainer += ` ${style.hidden}`)
       }
     >
       <div className={style.form}>
-        <label htmlFor="firstPlayer">{FIRST_PLAYER_NAME}</label>
-        <input type="text" id="firstPlayer" />
-        <label htmlFor="secondPlayer">{SECOND_PLAYER_NAME}</label>
-        <input type="text" id="secondPlayer" />
+        <label htmlFor="firstPlayer">{TITLE_FIRST_PLAYER_NAME}</label>
+        <input type="text" id="firstPlayer" onChange={handleChange} value={state.firsPlayerName}/>
+        <label htmlFor="secondPlayer">{TITLE_SECOND_PLAYER_NAME}</label>
+        <input type="text" id="secondPlayer" onChange={handleChange} value={state.secondPlayerName}/>
         <button onClick={handleClick}>Ok</button>
       </div>
     </div>

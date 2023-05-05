@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const Info = (props) => {
   const [showPopUp, setShowPopUp] = useState(props.isShowPopUp);
-  const massage = "Для початку гри потрібно натиснути кнопку Нова гра";
+  const massage = "Для початку гри потрібно натиснути кнопку Нова гра.";
 
   if (props.isShowPopUp !== showPopUp) {
     setShowPopUp(props.isShowPopUp);

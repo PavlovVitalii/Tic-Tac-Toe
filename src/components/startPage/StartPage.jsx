@@ -6,11 +6,17 @@ import NamesPopUp from "../popUps/playersName/addNames";
 
 const StartPage = () => {
   const [state, setState] = useState({
-    playerX: { name: "", moves: [] },
-    playerO: { name: "", moves: [] },
     valueSquare: "true",
+  });
+
+  const [visibilityPopUps, setVisibilityPopUps] = useState({
     isShowInfo: false,
     isShowForm: false,
+  });
+
+  const [players, setPlayers] = useState({
+    playerX: { name: "", moves: [] },
+    playerO: { name: "", moves: [] },
   });
 
   const changeXorO = () => {
@@ -18,19 +24,27 @@ const StartPage = () => {
   };
 
   const changeVisibilityInfo = () => {
-    setState({ ...state, isShowInfo: !state.isShowInfo });
+    setVisibilityPopUps({ ...visibilityPopUps, isShowInfo: !visibilityPopUps.isShowInfo });
   };
 
   const changeVisibilityForm = () => {
-    setState({ ...state, isShowForm: !state.isShowForm });
+    setVisibilityPopUps({ ...visibilityPopUps, isShowForm: !visibilityPopUps.isShowForm });
   };
 
-
   const isNameEmpty = () => {
-    const namePlayer_1 = state.playerX.name.trim();
-    const namePlayer_2 = state.playerO.name.trim();
+    const namePlayer_1 = players.playerX.name.trim();
+    const namePlayer_2 = players.playerO.name.trim();
 
     return namePlayer_1 === "" || namePlayer_2 === "";
+  };
+
+  const savePlayersNames = (firstPlayer = "", secondPlayer = "") => {
+    setPlayers({
+      ...players,
+      playerX: { ...players, name: firstPlayer },
+      playerO: { ...players, name: secondPlayer },
+    });
+    setVisibilityPopUps({PisShowForm: !state.isShowForm})
   };
 
   const props = {
@@ -47,7 +61,9 @@ const StartPage = () => {
       </div>
       <div className={style["field-container"]}>
         <GameFiled data={props} />
-        <button className={style.btn} onClick={changeVisibilityForm}>Нова гра</button>
+        <button className={style.btn} onClick={changeVisibilityForm}>
+          Нова гра
+        </button>
       </div>
       <table>
         <thead>
@@ -58,20 +74,24 @@ const StartPage = () => {
         </thead>
         <tbody>
           <tr>
-            <th>{state.playerX.name}</th>
+            <th>{players.playerX.name}</th>
             <th>{0}</th>
           </tr>
           <tr>
-            <th>{state.playerO.name}</th>
+            <th>{players.playerO.name}</th>
             <th>{0}</th>
           </tr>
         </tbody>
       </table>
       <PopUp
-        isShowPopUp={state.isShowInfo}
+        isShowPopUp={visibilityPopUps.isShowInfo}
         changeVisibilityInfo={changeVisibilityInfo}
       />
-      <NamesPopUp isShowPopUp={state.isShowForm} changeVisibilityForm={changeVisibilityForm}></NamesPopUp>
+      <NamesPopUp
+        isShowPopUp={visibilityPopUps.isShowForm}
+        changeVisibilityForm={changeVisibilityForm}
+        savePlayersNames={savePlayersNames}
+      ></NamesPopUp>
     </div>
   );
 };
