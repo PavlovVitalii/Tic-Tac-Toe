@@ -7,7 +7,7 @@ const Square = (props) => {
   const data = { id: props.id, ...props.data };
   const handleClick = () => {
     if (data.isNameEmpty()) {
-     data.changeVisibilityInfo();
+      data.changeVisibilityInfo();
       return;
     }
 
