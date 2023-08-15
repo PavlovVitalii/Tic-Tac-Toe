@@ -8,8 +8,8 @@ const AddNames = (props) => {
     secondPlayerName: "",
   });
 
-  const TITLE_FIRST_PLAYER_NAME = "Перший гравець";
-  const TITLE_SECOND_PLAYER_NAME = "Другий гравець";
+  const TITLE_FIRST_PLAYER_NAME = "Перший гравець X";
+  const TITLE_SECOND_PLAYER_NAME = "Другий гравець O";
   let classNameContainer = `${style["form-container"]}`;
 
   if (props.isShowPopUp !== state.visible) {

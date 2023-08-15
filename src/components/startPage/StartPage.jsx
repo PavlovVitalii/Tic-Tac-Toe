@@ -5,8 +5,9 @@ import PopUp from "../popUps/Info/PopUp";
 import NamesPopUp from "../popUps/playersName/addNames";
 
 const StartPage = () => {
-  const [state, setState] = useState({
-    valueSquare: "true",
+
+  const [valueSquare, setValueSquare] = useState({
+    isX: "true",
   });
 
   const [visibilityPopUps, setVisibilityPopUps] = useState({
@@ -15,20 +16,26 @@ const StartPage = () => {
   });
 
   const [players, setPlayers] = useState({
-    playerX: { name: "", moves: [] },
-    playerO: { name: "", moves: [] },
+    playerX: { name: "", moves: [], winCounter: 0 },
+    playerO: { name: "", moves: [], winCounter: 0 },
   });
 
-  const changeXorO = () => {
-    setState({ ...state, valueSquare: !state.valueSquare });
+  const changePlayer = () => {
+    setValueSquare({ ...valueSquare, isX: !valueSquare.isX });
   };
 
   const changeVisibilityInfo = () => {
-    setVisibilityPopUps({ ...visibilityPopUps, isShowInfo: !visibilityPopUps.isShowInfo });
+    setVisibilityPopUps({
+      ...visibilityPopUps,
+      isShowInfo: !visibilityPopUps.isShowInfo,
+    });
   };
 
   const changeVisibilityForm = () => {
-    setVisibilityPopUps({ ...visibilityPopUps, isShowForm: !visibilityPopUps.isShowForm });
+    setVisibilityPopUps({
+      ...visibilityPopUps,
+      isShowForm: !visibilityPopUps.isShowForm,
+    });
   };
 
   const isNameEmpty = () => {
@@ -44,12 +51,13 @@ const StartPage = () => {
       playerX: { ...players, name: firstPlayer },
       playerO: { ...players, name: secondPlayer },
     });
-    setVisibilityPopUps({PisShowForm: !state.isShowForm})
+    
+    setVisibilityPopUps({ PisShowForm: !valueSquare.isShowForm });
   };
 
   const props = {
-    valueSquare: state.valueSquare,
-    changeValue: changeXorO,
+    valueSquare: valueSquare.isX,
+    changeValue: changePlayer,
     isNameEmpty: isNameEmpty,
     changeVisibilityInfo: changeVisibilityInfo,
   };
