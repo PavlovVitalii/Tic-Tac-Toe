@@ -5,18 +5,20 @@ const Square = (props) => {
   const [square, setSquare] = useState({ disable: false, value: "" });
 
   const data = { id: props.id, ...props.data };
-  const handleClick = () => {
+  const handleClick = (e) => {
     if (data.isNameEmpty()) {
       data.changeVisibilityInfo();
       return;
     }
-
-    setSquare({ ...square, disable: true });
+   
+    setSquare({disable: true });
 
     if (data.valueSquare) {
       setSquare({ disable: true, value: "X" });
+      data.saveMove(e.target.id, "playerX");
     } else {
       setSquare({ disable: true, value: "O" });
+      data.saveMove(e.target.id, "playerO");
     }
     data.changeValue();
   };

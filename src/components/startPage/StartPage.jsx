@@ -5,7 +5,6 @@ import PopUp from "../popUps/Info/PopUp";
 import NamesPopUp from "../popUps/playersName/addNames";
 
 const StartPage = () => {
-
   const [valueSquare, setValueSquare] = useState({
     isX: "true",
   });
@@ -21,19 +20,17 @@ const StartPage = () => {
   });
 
   const changePlayer = () => {
-    setValueSquare({ ...valueSquare, isX: !valueSquare.isX });
+    setValueSquare({ isX: !valueSquare.isX });
   };
 
   const changeVisibilityInfo = () => {
     setVisibilityPopUps({
-      ...visibilityPopUps,
       isShowInfo: !visibilityPopUps.isShowInfo,
     });
   };
 
   const changeVisibilityForm = () => {
     setVisibilityPopUps({
-      ...visibilityPopUps,
       isShowForm: !visibilityPopUps.isShowForm,
     });
   };
@@ -48,11 +45,29 @@ const StartPage = () => {
   const savePlayersNames = (firstPlayer = "", secondPlayer = "") => {
     setPlayers({
       ...players,
-      playerX: { ...players, name: firstPlayer },
-      playerO: { ...players, name: secondPlayer },
+
+      playerX: { ...players.playerX, name: firstPlayer },
+      playerO: { ...players.playerO, name: secondPlayer },
     });
-    
+
     setVisibilityPopUps({ PisShowForm: !valueSquare.isShowForm });
+  };
+
+  const saveMove = (id, player) => {
+    if (player === "playerX") {
+      setPlayers({
+        ...players,
+        playerX: {
+          ...players.playerX,
+          moves: [...players.playerX.moves, id],
+        },
+      });
+    } else {
+      setPlayers({
+        ...players,
+        playerO: { ...players.playerO, moves: [...players.playerO.moves, id] },
+      });
+    }
   };
 
   const props = {
@@ -60,8 +75,10 @@ const StartPage = () => {
     changeValue: changePlayer,
     isNameEmpty: isNameEmpty,
     changeVisibilityInfo: changeVisibilityInfo,
+    saveMove: saveMove,
+    players: players,
   };
-
+  console.log(players);
   return (
     <div className={style.container}>
       <div>
