@@ -5,6 +5,7 @@ const Square = (props) => {
   const [square, setSquare] = useState({ disable: false, value: "" });
 
   const data = { id: props.id, ...props.data };
+  
   const handleClick = (e) => {
     if (data.isNameEmpty()) {
       data.changeVisibilityInfo();

@@ -3,6 +3,7 @@ import GameFiled from "../gameFiled/GameFiled";
 import { useState } from "react";
 import PopUp from "../popUps/Info/PopUp";
 import NamesPopUp from "../popUps/playersName/addNames";
+import win from "../../data/data";
 
 const StartPage = () => {
   const [valueSquare, setValueSquare] = useState({
@@ -19,7 +20,7 @@ const StartPage = () => {
     playerO: { name: "", moves: [], winCounter: 0 },
   });
 
-  const changePlayer = () => {
+  const changePlayer = (isX) => {
     setValueSquare({ isX: !valueSquare.isX });
   };
 
@@ -70,6 +71,18 @@ const StartPage = () => {
     }
   };
 
+  const arr = [1, 5, 8, 3, 2];
+  const isWinner = (moves, win) => {
+    return win.some((el) => {
+      el.every((element) => {
+        moves.includes(element);
+      });
+    });
+  };
+  isWinner(arr, win);
+  //console.log([1,2,3].every(el=> arr.includes(el)));
+  //console.log(isWinner(arr, win));
+
   const props = {
     valueSquare: valueSquare.isX,
     changeValue: changePlayer,
@@ -78,7 +91,7 @@ const StartPage = () => {
     saveMove: saveMove,
     players: players,
   };
-  console.log(players);
+
   return (
     <div className={style.container}>
       <div>

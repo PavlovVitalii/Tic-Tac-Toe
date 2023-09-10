@@ -8,3 +8,5 @@ const win = [
   ["6", "7", "8"],
   ["3", "5", "7"],
 ];
+
+export default win;
