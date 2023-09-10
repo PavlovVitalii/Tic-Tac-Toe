@@ -71,17 +71,12 @@ const StartPage = () => {
     }
   };
 
-  const arr = [1, 5, 8, 3, 2];
-  const isWinner = (moves, win) => {
-    return win.some((el) => {
-      el.every((element) => {
-        moves.includes(element);
-      });
-    });
+
+  const isWinner = (arr, win) => {
+   return win.some((element) => element.every((el) => arr.includes(el)));
   };
-  isWinner(arr, win);
-  //console.log([1,2,3].every(el=> arr.includes(el)));
-  //console.log(isWinner(arr, win));
+
+ 
 
   const props = {
     valueSquare: valueSquare.isX,
