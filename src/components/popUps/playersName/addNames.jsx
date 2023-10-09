@@ -18,6 +18,7 @@ const AddNames = (props) => {
 
   const handleClick = () => {
     props.savePlayersNames(state.firsPlayerName, state.secondPlayerName);
+    props.changeVisibilityForm();
     setState({ ...state, firsPlayerName: "", secondPlayerName: "" });
   };
 

@@ -3,16 +3,16 @@ import style from "./Square.module.css";
 
 const Square = (props) => {
   const [square, setSquare] = useState({ disable: false, value: "" });
-
   const data = { id: props.id, ...props.data };
-  
+
   const handleClick = (e) => {
+    console.log(data.value);
     if (data.isNameEmpty()) {
       data.changeVisibilityInfo();
       return;
     }
-   
-    setSquare({disable: true });
+
+    // setSquare({disable: true });
 
     if (data.valueSquare) {
       setSquare({ disable: true, value: "X" });

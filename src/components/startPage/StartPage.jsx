@@ -20,17 +20,19 @@ const StartPage = () => {
     playerO: { name: "", moves: [], winCounter: 0 },
   });
 
-  const changePlayer = (isX) => {
+  const changePlayer = () => {
     setValueSquare({ isX: !valueSquare.isX });
   };
 
   const changeVisibilityInfo = () => {
+    console.log("info");
     setVisibilityPopUps({
       isShowInfo: !visibilityPopUps.isShowInfo,
     });
   };
 
   const changeVisibilityForm = () => {
+    console.log("form");
     setVisibilityPopUps({
       isShowForm: !visibilityPopUps.isShowForm,
     });
@@ -51,7 +53,7 @@ const StartPage = () => {
       playerO: { ...players.playerO, name: secondPlayer },
     });
 
-    setVisibilityPopUps({ PisShowForm: !valueSquare.isShowForm });
+    setVisibilityPopUps({ isShowForm: !valueSquare.isShowForm });
   };
 
   const saveMove = (id, player) => {
@@ -71,12 +73,9 @@ const StartPage = () => {
     }
   };
 
-
   const isWinner = (arr, win) => {
-   return win.some((element) => element.every((el) => arr.includes(el)));
+    return win.some((element) => element.every((el) => arr.includes(el)));
   };
-
- 
 
   const props = {
     valueSquare: valueSquare.isX,
@@ -84,7 +83,7 @@ const StartPage = () => {
     isNameEmpty: isNameEmpty,
     changeVisibilityInfo: changeVisibilityInfo,
     saveMove: saveMove,
-    players: players,
+    players: players, // can be remove
   };
 
   return (
